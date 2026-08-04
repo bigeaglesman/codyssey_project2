@@ -1,4 +1,5 @@
 import utils
+import Quiz
 
 def main():
     while True:
