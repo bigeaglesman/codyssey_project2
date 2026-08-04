@@ -7,17 +7,17 @@ def str_to_int(input: str):
         return None
 
 def add_quiz(question, choices, answer):
-    try:
-        quiz = Quiz(question, choices, answer)
-    except ValueError as e:
-        print(f"퀴즈 생성 실패 {e}")
-        return None
+    if str_to_int(answer) is None:
+        print("퀴즈 추가 실패: 정답이 잘못 입력되었습니다")
     else:
-        return quiz
+        return Quiz(question, choices, answer)
 
 def add_basic_quiz():
-    quiz_list = []
-    quiz = add_quiz("퀴즈1", "선택지", "정답")
-    if quiz != None:
-        quiz_list.append(quiz)
+    quiz_list = [add_quiz("지문1", "정답지1", "1"), 
+                add_quiz("지문2", "정답지2", "2"), 
+                add_quiz("지문3", "정답지3", "3"), 
+                add_quiz("지문4", "정답지4", "4"), 
+                add_quiz("지문5", "정답지5", "1"), 
+                 ]
+    return quiz_list
     

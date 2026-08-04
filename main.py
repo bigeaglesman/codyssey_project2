@@ -2,6 +2,7 @@ import utils
 import Quiz
 
 def main():
+    utils.add_basic_quiz
     while True:
         print("""
         ========================================
