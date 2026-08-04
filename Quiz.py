@@ -4,7 +4,13 @@ class Quiz:
     def __init__(self, question, choices, answer):
         self.question = question
         self.choices = choices
-        self.answer = answer
+        int_answer = utils.str_to_int(answer)
+        if int_answer is None:
+            raise ValueError("퀴즈 정답 형식 오류")
+        if int(answer) >= 1 and int(answer) <= 4:
+            self.answer = answer
+        else:
+            raise ValueError("퀴즈 정답 범위 오류")
 
     def print_question(self):
         print(self.question)

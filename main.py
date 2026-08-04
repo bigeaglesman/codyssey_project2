@@ -15,6 +15,7 @@ def main():
         ========================================""")
         feature = utils.str_to_int(input("선택: "))
         if feature is None:
+            print("에러 발생: 숫자 변환 실패")
             continue
         elif feature < 1 or feature > 5:
             print ("허용 범위 밖의 숫자입니다")
