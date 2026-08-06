@@ -2,7 +2,7 @@ import utils
 import Quiz
 
 def main():
-    utils.add_basic_quiz
+    basic_quiz_list = utils.add_basic_quiz()
     while True:
         print("""
         ========================================
@@ -24,11 +24,9 @@ def main():
         elif feature == 5:
             print("프로그램을 종료합니다")
             break
+        else: 
+            utils.exec_menu(feature, basic_quiz_list)
  
-
-
-    
-
 
 if __name__ == "__main__":
     try:
