@@ -3,7 +3,10 @@ import utils
 class Quiz:
     def __init__(self, question: str, choices: list[str], answer: str):
         self.question: str = question
-        self.choices: list[str] = choices
+        if len(choices) == 4:
+            self.choices: list[str] = choices
+        else:
+            raise ValueError("보기 갯수 오류")
         int_answer = utils.str_to_int(answer)
         if int_answer is None:
             raise ValueError("퀴즈 정답 형식 오류")
@@ -27,4 +30,11 @@ class Quiz:
         elif user_int_answer == self.answer:
             print("정답입니다")
             return 1
+
+    def to_dict(self):
+        return {
+            "question": self.question,
+            "choices": self.choices,
+            "answer": self.answer
+        }
 
