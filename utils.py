@@ -40,6 +40,8 @@ def exec_menu(menu_feature: int, basic_quiz_list: list[Quiz.Quiz]):
         add_quiz_to_json()
     elif menu_feature == 3:
         check_quiz_list()
+    elif menu_feature == 4:
+        show_high_score()
 
 def solve_quiz(basic_quiz_list: list[Quiz.Quiz]):
     quiz_list: list[Quiz.Quiz]= get_json_quiz_data_as_instance()
@@ -135,3 +137,25 @@ def check_quiz_list():
                 print(f"[{i+1}] {quiz.question}")
         else:
             print("퀴즈 데이터가 비어있습니다")
+
+def show_high_score():
+    try:
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+            high_score = all_data["high_score"]
+            int_high_score = int(high_score)
+            if int_high_score < 0 or int_high_score > 100:
+                raise ValueError("최고 점수가 범위를 벗어났습니다")
+            print(f"최고점수: {int_high_score}")
+    except FileNotFoundError:
+        print("퀴즈 파일이 없습니다")
+        return None
+    except KeyError:
+        print("데이터에 'high_score'키가 존재하지 않습니다")
+        return None
+    except ValueError as e:
+        print(f"데이터가 손상되었습니다: {e}")
+    except PermissionError:
+        print("파일 권한 오류")
+    except Exception as e:
+        print(f"알 수 없는 에러 발생: {e}")
