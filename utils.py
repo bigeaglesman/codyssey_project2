@@ -1,6 +1,8 @@
 import Quiz
 import json
 
+FILE_PATH = "./state.json"
+
 def str_to_int(input: str):
     try:
         return int(input)
@@ -12,7 +14,11 @@ def add_quiz(
     if str_to_int(answer) is None:
         print("퀴즈 추가 실패: 정답이 잘못 입력되었습니다")
     else:
-        return Quiz.Quiz(question, choices, answer)
+        try:
+           quiz: Quiz.Quiz = Quiz.Quiz(question, choices, answer)
+           return quiz
+        except:
+            print("퀴즈 추가 중 오류 발생")
 
 def add_basic_quiz():
     basic_quiz_list = [
@@ -30,10 +36,13 @@ def exec_menu(menu_feature: int, basic_quiz_list: list[Quiz.Quiz]):
 
 
 def solve_quiz(basic_quiz_list: list[Quiz.Quiz]):
-    # TODO json파일 읽어서 퀴즈 출제
+    quiz_list: list[Quiz.Quiz]= get_json_quiz_data()
+    if quiz_list == None:
+        print("기본 문제를 출제합니다")
+        quiz_list = basic_quiz_list
     answer_cnt : int = 0
-    len_quiz: int = len(basic_quiz_list)
-    for i, quiz in enumerate(basic_quiz_list):
+    len_quiz: int = len(quiz_list)
+    for i, quiz in enumerate(quiz_list):
         set_quiz(i, quiz)
         answer_cnt += submit_answer(quiz)
         print("\n----------------------------------------\n\n")
@@ -56,5 +65,25 @@ def submit_answer(quiz: Quiz.Quiz):
     return quiz.check_answer(user_answer)
 
 def get_100grade(answer_cnt: int, quiz_cnt: int):
-    grade: int = answer_cnt/quiz_cnt *100
+    grade: int = int(answer_cnt/quiz_cnt *100)
     return grade
+
+def get_json_quiz_data():
+    try:
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+            data_quiz_list = all_data["quizzes"]
+            quiz_list = [Quiz.Quiz(**item) for item in data_quiz_list]
+            return quiz_list
+    except FileNotFoundError:
+        print("퀴즈 파일이 없습니다")
+        return None
+    except KeyError:
+        print("데이터에 'quizzes'키가 존재하지 않습니다")
+        return None
+    except ValueError:
+        print("퀴즈 추가 중 오류 발생")
+    except PermissionError:
+        print("파일 권한 오류")
+    except Exception as e:
+        print(f"알 수 없는 에러 발생: {e}")
