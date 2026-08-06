@@ -38,6 +38,8 @@ def exec_menu(menu_feature: int, basic_quiz_list: list[Quiz.Quiz]):
         solve_quiz(basic_quiz_list)
     elif menu_feature == 2:
         add_quiz_to_json()
+    elif menu_feature == 3:
+        check_quiz_list()
 
 def solve_quiz(basic_quiz_list: list[Quiz.Quiz]):
     quiz_list: list[Quiz.Quiz]= get_json_quiz_data_as_instance()
@@ -124,3 +126,12 @@ def get_json_quiz_raw_data(new_quiz: Quiz.Quiz):
         print("파일 권한 오류")
     except Exception as e:
         print(f"알 수 없는 에러 발생: {e}")
+
+def check_quiz_list():
+    quiz_list = get_json_quiz_data_as_instance()
+    if quiz_list != None:
+        if len(quiz_list) != 0:
+            for i, quiz in enumerate(quiz_list):
+                print(f"[{i+1}] {quiz.question}")
+        else:
+            print("퀴즈 데이터가 비어있습니다")
