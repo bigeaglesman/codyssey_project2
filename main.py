@@ -1,31 +1,10 @@
 import utils
 import Quiz
+import QuizGame
 
 def main():
-    basic_quiz_list = utils.add_basic_quiz()
-    while True:
-        print("""
-        ========================================
-                🎯 나만의 퀴즈 게임 🎯
-        ========================================
-        1. 퀴즈 풀기
-        2. 퀴즈 추가
-        3. 퀴즈 목록
-        4. 점수 확인
-        5. 종료
-        ========================================""")
-        feature = utils.str_to_int(input("선택: "))
-        if feature is None:
-            print("에러 발생: 숫자 변환 실패")
-            continue
-        elif feature < 1 or feature > 5:
-            print ("허용 범위 밖의 숫자입니다")
-            return None
-        elif feature == 5:
-            print("프로그램을 종료합니다")
-            break
-        else: 
-            utils.exec_menu(feature, basic_quiz_list)
+    quiz_game_manager: QuizGame.QuizGame = QuizGame.QuizGame()
+    quiz_game_manager.run()
  
 
 if __name__ == "__main__":
