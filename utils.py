@@ -1,4 +1,3 @@
-import Quiz
 import json
 
 FILE_PATH = "./state.json"

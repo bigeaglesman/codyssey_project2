@@ -14,18 +14,6 @@ class QuizGame:
         if self.best_score == None:
             self.best_score = 0
 
-    def show_menu(self):
-        print("""
-        ========================================
-                🎯 나만의 퀴즈 게임 🎯
-        ========================================
-        1. 퀴즈 풀기
-        2. 퀴즈 추가
-        3. 퀴즈 목록
-        4. 점수 확인
-        5. 종료
-        ========================================""")
-
     def run(self):
         while True:
             self.show_menu()
@@ -39,6 +27,18 @@ class QuizGame:
                 break
             else: 
                 self.exec_menu(feature)
+
+    def show_menu(self):
+        print("""
+        ========================================
+                🎯 나만의 퀴즈 게임 🎯
+        ========================================
+        1. 퀴즈 풀기
+        2. 퀴즈 추가
+        3. 퀴즈 목록
+        4. 점수 확인
+        5. 종료
+        ========================================""")
 
     def add_basic_quiz(self):
         basic_quiz_list = [
@@ -57,7 +57,7 @@ class QuizGame:
             return None
         else:
             try:
-                quiz: Quiz.Quiz = Quiz.Quiz(question, choices, answer)
+                quiz= Quiz.Quiz(question, choices, answer)
                 return quiz
             except ValueError as e:
                 print(f"퀴즈 추가 중 오류 발생: {e}")
@@ -159,12 +159,15 @@ class QuizGame:
             print(f"알 수 없는 에러 발생: {e}")
 
     def check_quiz_list(self):
-        if self.quiz_list != None:
-            if len(self.quiz_list) != 0:
-                for i, quiz in enumerate(self.quiz_list):
-                    print(f"[{i+1}] {quiz.question}")
-            else:
-                print("퀴즈 데이터가 비어있습니다")
+        if self.quiz_list == None:
+            quiz_list = self.basic_quiz_list
+        else:
+            quiz_list = self.quiz_list
+        if len(quiz_list) != 0:
+            for i, quiz in enumerate(quiz_list):
+                print(f"[{i+1}] {quiz.question}")
+        else:
+            print("퀴즈 데이터가 비어있습니다")
 
     def get_best_score(self):
         try:

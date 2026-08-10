@@ -1,5 +1,3 @@
-import utils
-import Quiz
 import QuizGame
 
 def main():
