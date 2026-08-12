@@ -53,12 +53,12 @@
     - `print_quiz`: 특정 퀴즈의 문제 번호, 질문, 4개의 선택지를 형식에 맞춰 출력합니다.
     - `submit_answer`: 사용자로부터 답을 입력받아 해당 퀴즈의 정답 여부를 판별합니다.
     - `get_json_quiz_data_as_instance`: JSON 파일에서 퀴즈 데이터를 읽어와 Quiz 객체 리스트로 변환합니다.
-- `add_quiz_to_json`: 사용자에게 새 퀴즈 정보를 입력받아 파일에 저장하고 현재 퀴즈 목록을 업데이트합니다.
-- `dump_quiz_data`: 전달받은 새로운 퀴즈 객체를 JSON 파일에 추가하여 영구적으로 저장합니다.
-- `check_quiz_list`: 현재 게임에 로드된 모든 퀴즈의 질문 목록을 화면에 보여줍니다.
-- `get_best_score`: JSON 파일로부터 기존에 기록된 최고 점수 데이터를 읽어옵니다.
-- `dump_best_score_data`: 새롭게 달성한 최고 점수를 JSON 파일에 기록하여 저장합니다.
-- `print_best_score`: 현재까지 기록된 최고 점수를 화면에 출력합니다.
+    - `add_quiz_to_json`: 사용자에게 새 퀴즈 정보를 입력받아 파일에 저장하고 현재 퀴즈 목록을 업데이트합니다.
+    - `dump_quiz_data`: 전달받은 새로운 퀴즈 객체를 JSON 파일에 추가하여 영구적으로 저장합니다.
+    - `check_quiz_list`: 현재 게임에 로드된 모든 퀴즈의 질문 목록을 화면에 보여줍니다.
+    - `get_best_score`: JSON 파일로부터 기존에 기록된 최고 점수 데이터를 읽어옵니다.
+    - `dump_best_score_data`: 새롭게 달성한 최고 점수를 JSON 파일에 기록하여 저장합니다.
+    - `print_best_score`: 현재까지 기록된 최고 점수를 화면에 출력합니다.
 
 # 7. 실행 흐름
 - main -> QuizGame객체 생성(베이직 퀴즈 리스트 생성, json데이터 객체로 전환, 최고점수 받아오기) 
