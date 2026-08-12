@@ -6,9 +6,4 @@ def main():
  
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nkeyboard interrupt 발생")
-    except EOFError:
-        print("\nEOFError 발생 ")
+    main()

@@ -16,17 +16,24 @@ class QuizGame:
 
     def run(self):
         while True:
-            self.show_menu()
-            feature = utils.str_to_int(input("선택: "))
-            if feature is None:
-                print("숫자 변환 실패")
-            elif feature < 1 or feature > 5:
-                print ("허용 범위 밖의 숫자입니다")
-            elif feature == 5:
-                print("프로그램을 종료합니다")
-                break
-            else: 
-                self.exec_menu(feature)
+            try:
+                self.show_menu()
+                feature = utils.str_to_int(input("선택: "))
+                if feature is None:
+                    print("숫자 변환 실패")
+                elif feature < 1 or feature > 5:
+                    print ("허용 범위 밖의 숫자입니다")
+                elif feature == 5:
+                    print("프로그램을 종료합니다")
+                    break
+                else: 
+                    self.exec_menu(feature)
+            except (KeyboardInterrupt, EOFError):
+                if utils.handle_exit_confirm():
+                    break
+                else:
+                    continue
+
 
     def show_menu(self):
         print("""
